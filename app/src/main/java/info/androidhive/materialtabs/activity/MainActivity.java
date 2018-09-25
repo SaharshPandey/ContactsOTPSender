@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity{
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    String jsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,41 +58,13 @@ public class MainActivity extends AppCompatActivity{
         tabLayout.setupWithViewPager(viewPager);
 
 
-        InputStream is = getResources().openRawResource(R.raw.generated);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
-            }
-        }  catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        String jsonString = writer.toString();
-        //System.out.println(jsonString);
 
 
-        try {
-            JSONArray jsonArray = new JSONArray(jsonString);
-            //System.out.println(jsonArray.getJSONObject(0).toString());
-            for(int i=0;i<jsonArray.length();i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String name = jsonObject.getString("name");
-                String phone = jsonObject.getString("phone");
-                System.out.println(name + "   " + phone);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+
+
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -110,6 +85,7 @@ public class MainActivity extends AppCompatActivity{
 
         @Override
         public Fragment getItem(int position) {
+
             return mFragmentList.get(position);
         }
 
