@@ -48,6 +48,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             jsonObject = jsonArray.getJSONObject(position);
             holder.name.setText(jsonObject.getString("name"));
             holder.contact.setText(jsonObject.getString("phone"));
+            holder.image.setImageResource(R.drawable.profile);
         } catch (JSONException e) {
             e.printStackTrace();
         }
