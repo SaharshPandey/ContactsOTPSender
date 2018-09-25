@@ -13,6 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,9 +64,7 @@ public class MainActivity extends AppCompatActivity{
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -73,7 +75,21 @@ public class MainActivity extends AppCompatActivity{
         }
 
         String jsonString = writer.toString();
-        System.out.println(jsonString);
+        //System.out.println(jsonString);
+
+
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            //System.out.println(jsonArray.getJSONObject(0).toString());
+            for(int i=0;i<jsonArray.length();i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String name = jsonObject.getString("name");
+                String phone = jsonObject.getString("phone");
+                System.out.println(name + "   " + phone);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
