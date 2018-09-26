@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
         UserContact = findViewById(R.id.user_contact);
         UserAddress = findViewById(R.id.user_address);
         SendMessage = findViewById(R.id.send_message);
-        
+
         UserImage.setImageResource(R.drawable.profile);
         UserName.setText(name);
         UserContact.setText(contact);

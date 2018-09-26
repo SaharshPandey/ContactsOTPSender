@@ -60,18 +60,26 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.itemView.findViewById(R.id.user_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppCompatActivity app =new AppCompatActivity();
-                Intent profile = new Intent(holder.itemView.getContext(),ProfileActivity.class);
+
+                Intent profile = new Intent(v.getContext(),ProfileActivity.class);
                 try {
                     profile.putExtra("name",jsonArray.getJSONObject(position).getString("name"));
-                    profile.putExtra("contact",jsonArray.getJSONObject(position).getString("contact"));
-                    profile.putExtra("contact",jsonArray.getJSONObject(position).getString("address"));
-                    app.startActivity(profile);
+
+                    System.out.println(jsonArray.getJSONObject(position).getString("name"));
+                    System.out.println(jsonArray.getJSONObject(position).getString("phone"));
+                    System.out.println(jsonArray.getJSONObject(position).getString("address"));
+
+                    profile.putExtra("contact",jsonArray.getJSONObject(position).getString("phone"));
+                    profile.putExtra("address",jsonArray.getJSONObject(position).getString("address"));
+
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                v.getContext().startActivity(profile);
+
             }
         });
 
