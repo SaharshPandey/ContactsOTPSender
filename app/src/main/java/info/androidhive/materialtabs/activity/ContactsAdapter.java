@@ -1,6 +1,9 @@
 package info.androidhive.materialtabs.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +45,19 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ContactsViewHolder holder, final int position) {
+
+       /* holder.itemView.findViewById(R.id.user_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity app =new AppCompatActivity();
+                Intent profile = new Intent(ContactsAdapter.this.getClass(),ProfileActivity.class);
+                profile.putExtra("position",String.valueOf(position));
+                app.startActivity(profile);
+            }
+        });*/
+
+
 
         try {
             jsonObject = jsonArray.getJSONObject(position);
@@ -60,7 +75,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         return jsonArray.length();
     }
 
-    public class ContactsViewHolder extends RecyclerView.ViewHolder {
+    public static class ContactsViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView image;
         TextView name;

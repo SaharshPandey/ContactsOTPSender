@@ -2,6 +2,7 @@ package info.androidhive.materialtabs.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,8 +13,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +34,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import info.androidhive.materialtabs.R;
 import info.androidhive.materialtabs.fragments.OneFragment;
 import info.androidhive.materialtabs.fragments.TwoFragment;
@@ -104,4 +109,7 @@ public class MainActivity extends AppCompatActivity{
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }
+

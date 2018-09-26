@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:background="@android:color/white"
+    android:id="@+id/user_profile"
     >
 
     <RelativeLayout
