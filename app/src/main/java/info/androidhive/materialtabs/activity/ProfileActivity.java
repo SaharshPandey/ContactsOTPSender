@@ -22,8 +22,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         String name = getIntent().getExtras().getString("name");
         String contact = getIntent().getExtras().getString("contact");
         String address = getIntent().getExtras().getString("address");
