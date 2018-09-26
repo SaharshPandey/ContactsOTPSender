@@ -122,7 +122,8 @@
         android:layout_gravity="center"
         android:inputType="textMultiLine"
         android:maxLines="3"
-        android:layout_marginLeft="47dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="10dp"
 
         />
     </LinearLayout>

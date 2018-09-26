@@ -1,20 +1,17 @@
 package info.androidhive.materialtabs.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.NexmoClientException;
 import com.nexmo.client.auth.AuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
-import com.nexmo.client.sms.SmsClient;
 import com.nexmo.client.sms.SmsSubmissionResult;
 import com.nexmo.client.sms.messages.TextMessage;
 
-import java.io.IOException;
 import java.util.Random;
 
 import info.androidhive.materialtabs.R;
@@ -50,31 +47,30 @@ public class SendMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                TextMessage exampleMessage = new TextMessage(
-                        "Kisan Inc",
-                        "918449681651",Message.getText().toString()
-                );
-
                 SmsSubmissionResult[] responses = new SmsSubmissionResult[0];
                 try {
-                    responses = client.getSmsClient().submitMessage(exampleMessage);
+                    responses = client.getSmsClient().submitMessage(new TextMessage(
+                            "Kisan Inc",
+                            "918449681651",
+                            Message.getText().toString()));
                 }
 
-
-                catch (IOException e) {
-                    e.printStackTrace();
-                } catch (NexmoClientException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
                 for (SmsSubmissionResult response : responses) {
                     System.out.println(response);
                 }
 
 
-            }
-        });
+
+
+
+
+
+                }
+
+    });
 
     }
 }
