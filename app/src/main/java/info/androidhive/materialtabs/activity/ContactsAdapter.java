@@ -45,19 +45,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactsViewHolder holder, final int position) {
-
-       /* holder.itemView.findViewById(R.id.user_profile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppCompatActivity app =new AppCompatActivity();
-                Intent profile = new Intent(ContactsAdapter.this.getClass(),ProfileActivity.class);
-                profile.putExtra("position",String.valueOf(position));
-                app.startActivity(profile);
-            }
-        });*/
-
-
+    public void onBindViewHolder(@NonNull final ContactsViewHolder holder, final int position) {
 
         try {
             jsonObject = jsonArray.getJSONObject(position);
@@ -67,6 +55,25 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        holder.itemView.findViewById(R.id.user_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity app =new AppCompatActivity();
+                Intent profile = new Intent(holder.itemView.getContext(),ProfileActivity.class);
+                try {
+                    profile.putExtra("name",jsonArray.getJSONObject(position).getString("name"));
+                    profile.putExtra("contact",jsonArray.getJSONObject(position).getString("contact"));
+                    profile.putExtra("contact",jsonArray.getJSONObject(position).getString("address"));
+                    app.startActivity(profile);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 

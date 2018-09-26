@@ -73,5 +73,7 @@ public class OneFragment extends Fragment{
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ContactsAdapter(jsonString));
+
+
     }
 }
