@@ -9,7 +9,7 @@
     >
 
     <TextView
-        android:id="@+id/text_message"
+        android:id="@+id/textfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -22,7 +22,7 @@
         />
 
     <Button
-        android:id="@+id/send_message_to_user"
+        android:id="@+id/message_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
