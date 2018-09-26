@@ -1,10 +1,14 @@
 package info.androidhive.materialtabs.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.json.JSONException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import info.androidhive.materialtabs.R;
@@ -25,9 +29,9 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        String name = getIntent().getExtras().getString("name");
-        String contact = getIntent().getExtras().getString("contact");
-        String address = getIntent().getExtras().getString("address");
+        final String name = getIntent().getExtras().getString("name");
+        final String contact = getIntent().getExtras().getString("contact");
+        final String address = getIntent().getExtras().getString("address");
 
         UserImage = findViewById(R.id.user_image);
         UserName = findViewById(R.id.user_name);
@@ -41,6 +45,17 @@ public class ProfileActivity extends AppCompatActivity {
         UserAddress.setText(address);
 
 
+        SendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(ProfileActivity.this,SendMessageActivity.class);
+                profile.putExtra("name",name);
+                profile.putExtra("contact",contact);
+
+
+                startActivity(profile);
+            }
+        });
 
     }
 }

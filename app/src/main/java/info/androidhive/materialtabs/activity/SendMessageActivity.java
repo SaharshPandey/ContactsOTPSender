@@ -20,13 +20,17 @@ public class SendMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
 
+        final String name = getIntent().getExtras().getString("name");
+        final String contact = getIntent().getExtras().getString("contact");
+
+
         Message = findViewById(R.id.textfield);
         SendMessage = findViewById(R.id.message_button);
 
-        Random random = new Random(6);
-        int otp = random.nextInt();
+        Random random = new Random();
+        int otp = 100000 + random.nextInt(900000);
 
-        Message.setText(" “Hi.Your  OTP  is: "+String.valueOf(otp));
+        Message.setText("Hi "+name+". Your  OTP  is: "+String.valueOf(otp));
         SendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
