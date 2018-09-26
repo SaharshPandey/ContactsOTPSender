@@ -7,11 +7,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.nexmo.client.NexmoClient;
+import com.nexmo.client.NexmoClientException;
 import com.nexmo.client.auth.AuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
 import com.nexmo.client.sms.SmsClient;
+import com.nexmo.client.sms.SmsSubmissionResult;
 import com.nexmo.client.sms.messages.TextMessage;
 
+import java.io.IOException;
 import java.util.Random;
 
 import info.androidhive.materialtabs.R;
@@ -29,7 +32,7 @@ public class SendMessageActivity extends AppCompatActivity {
 
 
         final AuthMethod auth = new TokenAuthMethod("bb20f7cc", "3wJNtx7J6FfYbANN");
-        NexmoClient client = new NexmoClient(auth);
+        final NexmoClient client = new NexmoClient(auth);
 
 
         final String name = getIntent().getExtras().getString("name");
@@ -47,13 +50,27 @@ public class SendMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SmsClient client = new NexmoClient(auth).getSmsClient();
-
                 TextMessage exampleMessage = new TextMessage(
-                        "Acme Inc",
-                        "+918449681651",
-                        "A text message sent using the Nexmo SMS API"
+                        "Kisan Inc",
+                        "918449681651",Message.getText().toString()
                 );
+
+                SmsSubmissionResult[] responses = new SmsSubmissionResult[0];
+                try {
+                    responses = client.getSmsClient().submitMessage(exampleMessage);
+                }
+
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                } catch (NexmoClientException e) {
+                    e.printStackTrace();
+                }
+
+
+                for (SmsSubmissionResult response : responses) {
+                    System.out.println(response);
+                }
 
 
             }
